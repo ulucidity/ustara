@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2021 $organization$
+/// Copyright (c) 1988-2022 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -16,13 +16,12 @@
 ///   File: main_opt.hpp
 ///
 /// Author: $author$
-///   Date: 8/4/2021, 11/12/2021
+///   Date: 5/10/2022
 ///////////////////////////////////////////////////////////////////////
 #ifndef XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_HPP
 #define XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_HPP
 
-#include "xos/app/console/version/main.hpp"
-#include "xos/lib/stara/version.hpp"
+#include "xos/app/console/ustara/version/main.hpp"
 
 namespace xos {
 namespace app {
@@ -32,8 +31,7 @@ namespace version {
 
 /// class main_optt
 template 
-<class TExtends = xos::app::console::version::maint<lib::stara::version>, 
- class TImplements = typename TExtends::implements>
+<class TExtends = xos::app::console::ustara::version::main, class TImplements = typename TExtends::implements>
 
 class exported main_optt: virtual public TImplements, public TExtends {
 public:
@@ -50,13 +48,13 @@ public:
     typedef typename extends::file_t file_t;
 
     /// constructor / destructor
-    main_optt(): run_(0) {
+    main_optt(): default_run_(0) {
     }
     virtual ~main_optt() {
     }
 private:
     main_optt(const main_optt& copy) {
-        throw exception(exception_unexpected);
+        throw xos::exception(exception_unexpected);
     }
 
 protected:
@@ -65,13 +63,15 @@ protected:
     typedef typename extends::err_writer_t err_writer_t;
 
     /// ...run
-    int (derives::*run_)(int argc, char_t** argv, char_t** env);
-    virtual int run(int argc, char_t** argv, char_t** env) {
+    int (derives::*default_run_)(int argc, char_t** argv, char_t** env);
+    virtual int default_run(int argc, char_t** argv, char_t** env) {
         int err = 0;
-        if ((run_)) {
-            err = (this->*run_)(argc, argv, env);
+        if ((default_run_)) {
+            err = (this->*default_run_)(argc, argv, env);
         } else {
-            err = extends::run(argc, argv, env);
+            if (!(err = this->all_version_run(argc, argv, env))) {
+                err = this->all_usage(argc, argv, env);
+            }
         }
         return err;
     }
@@ -86,4 +86,4 @@ typedef main_optt<> main_opt;
 } /// namespace app
 } /// namespace xos
 
-#endif /// ndef XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_HPP
+#endif /// ndef XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_HPP 

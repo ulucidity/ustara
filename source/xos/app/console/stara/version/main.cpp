@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2021 $organization$
+/// Copyright (c) 1988-2022 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -16,18 +16,20 @@
 ///   File: main.cpp
 ///
 /// Author: $author$
-///   Date: 8/4/2021, 11/12/2021
+///   Date: 5/10/2022
 ///////////////////////////////////////////////////////////////////////
-#include "xos/app/console/stara/version/main.hpp"
+#include "xos/app/console/stara/version/main_opt.hpp"
 
 #if defined(XOS_CONSOLE_MAIN_MAIN)
 #if !defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_INSTANCE)
 #define XOS_APP_CONSOLE_STARA_VERSION_MAIN_INSTANCE
-#endif /// !defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_NSTANCE)
+#endif /// !defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_INSTANCE)
 #endif /// defined(XOS_CONSOLE_MAIN_MAIN)
 
 #if defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_INSTANCE)
+#if !defined(NO_XOS_CONSOLE_MAIN_MAIN)
 #include "xos/console/main_main.cpp"
+#endif /// !defined(NO_XOS_CONSOLE_MAIN_MAIN)
 #endif /// defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_INSTANCE)
 
 namespace xos {
@@ -36,9 +38,9 @@ namespace console {
 namespace stara {
 namespace version {
 
-/// class main
+/// class main_optt
 #if defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_INSTANCE)
-static main the_main;
+static main_opt the_main_opt;
 #endif /// defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_INSTANCE)
 
 } /// namespace version

@@ -13,36 +13,39 @@
 /// or otherwise) arising in any way out of the use of this software, 
 /// even if advised of the possibility of such damage.
 ///
-///   File: main_opt.cpp
+///   File: main.cpp
 ///
 /// Author: $author$
 ///   Date: 5/10/2022
 ///////////////////////////////////////////////////////////////////////
-#include "xos/app/console/stara/version/main_opt.hpp"
+#include "xos/app/console/protocol/http/server/main.hpp"
 
-#if !defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_INSTANCE)
-///#define XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_INSTANCE
-#endif /// !defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_INSTANCE)
-
-#if defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_INSTANCE)
-#if !defined(NO_XOS_CONSOLE_MAIN_MAIN)
+#if defined(XOS_CONSOLE_MAIN_MAIN)
 #include "xos/console/main_main.cpp"
-#endif /// !defined(NO_XOS_CONSOLE_MAIN_MAIN)
-#endif /// defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_INSTANCE)
+#if !defined(XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_INSTANCE)
+#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_INSTANCE
+#endif /// !defined(XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_NSTANCE)
+#endif /// defined(XOS_CONSOLE_MAIN_MAIN)
+
+#if !defined(XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_INSTANCE)
+///#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_INSTANCE
+#endif /// !defined(XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_NSTANCE)
 
 namespace xos {
 namespace app {
 namespace console {
-namespace stara {
-namespace version {
+namespace protocol {
+namespace http {
+namespace server {
 
-/// class main_optt
-#if defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_INSTANCE)
-static main_opt the_main_opt;
-#endif /// defined(XOS_APP_CONSOLE_STARA_VERSION_MAIN_OPT_INSTANCE)
+/// class main
+#if defined(XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_INSTANCE)
+static main the_main;
+#endif /// defined(XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_INSTANCE)
 
-} /// namespace version
-} /// namespace stara
+} /// namespace server
+} /// namespace http
+} /// namespace protocol
 } /// namespace console
 } /// namespace app
 } /// namespace xos

@@ -18,20 +18,21 @@
 /// Author: $author$
 ///   Date: 5/10/2022
 ///////////////////////////////////////////////////////////////////////
-#ifndef XOS_APP_CONSOLE_STARA_VERSION_MAIN_HPP
-#define XOS_APP_CONSOLE_STARA_VERSION_MAIN_HPP
+#ifndef XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_HPP
+#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_HPP
 
-#include "xos/app/console/stara/version/main_opt.hpp"
+#include "xos/app/console/protocol/http/server/main_opt.hpp"
 
 namespace xos {
 namespace app {
 namespace console {
-namespace stara {
-namespace version {
+namespace protocol {
+namespace http {
+namespace server {
 
 /// class maint
 template 
-<class TExtends = xos::app::console::stara::version::main_optt<>, 
+<class TExtends = xos::app::console::protocol::http::server::main_opt, 
  class TImplements = typename TExtends::implements>
 
 class exported maint: virtual public TImplements, public TExtends {
@@ -49,13 +50,13 @@ public:
     typedef typename extends::file_t file_t;
 
     /// constructor / destructor
-    maint(): default_run_(0) {
+    maint(): run_(0) {
     }
     virtual ~maint() {
     }
 private:
     maint(const maint& copy) {
-        throw xos::exception(exception_unexpected);
+        throw exception(exception_unexpected);
     }
 
 protected:
@@ -64,15 +65,13 @@ protected:
     typedef typename extends::err_writer_t err_writer_t;
 
     /// ...run
-    int (derives::*default_run_)(int argc, char_t** argv, char_t** env);
-    virtual int default_run(int argc, char_t** argv, char_t** env) {
+    int (derives::*run_)(int argc, char_t** argv, char_t** env);
+    virtual int run(int argc, char_t** argv, char_t** env) {
         int err = 0;
-        if ((default_run_)) {
-            err = (this->*default_run_)(argc, argv, env);
+        if ((run_)) {
+            err = (this->*run_)(argc, argv, env);
         } else {
-            if (!(err = this->all_version_run(argc, argv, env))) {
-                err = this->all_usage(argc, argv, env);
-            }
+            err = extends::run(argc, argv, env);
         }
         return err;
     }
@@ -81,10 +80,11 @@ protected:
 }; /// class maint
 typedef maint<> main;
 
-} /// namespace version
-} /// namespace stara
+} /// namespace server
+} /// namespace http
+} /// namespace protocol
 } /// namespace console
 } /// namespace app
 } /// namespace xos
 
-#endif /// ndef XOS_APP_CONSOLE_STARA_VERSION_MAIN_HPP 
+#endif /// ndef XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_HPP

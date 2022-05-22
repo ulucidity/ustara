@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-/// Copyright (c) 1988-2021 $organization$
+/// Copyright (c) 1988-2022 $organization$
 ///
 /// This software is provided by the author and contributors ``as is'' 
 /// and any express or implied warranties, including, but not limited to, 
@@ -16,50 +16,44 @@
 ///   File: main_opt.hpp
 ///
 /// Author: $author$
-///   Date: 12/17/2021, 5/10/2022
+///   Date: 5/10/2022
 ///////////////////////////////////////////////////////////////////////
-#ifndef XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPT_HPP
-#define XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPT_HPP
+#ifndef XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPT_HPP
+#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPT_HPP
 
-#include "xos/app/console/protocol/xttp/base/main.hpp"
+#include "xos/app/console/protocol/http/base/main.hpp"
+#include "xos/app/console/protocol/xttp/server/main.hpp"
 
-#define XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_CHARS_EXTEND \
+#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPTIONS_CHARS_EXTEND \
 
-#define XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_OPTIONS_EXTEND \
+#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
 
-///////////////////////////////////////////////////////////////////////
-#define XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_CHARS \
-   XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_CHARS_EXTEND \
-   XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_OPTIONS_CHARS
+#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPTIONS_CHARS \
+   XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPTIONS_CHARS_EXTEND \
+   XOS_APP_CONSOLE_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_CHARS_EXTEND \
+   XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_CHARS \
 
-#define XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_OPTIONS \
-   XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_OPTIONS_EXTEND \
-   XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_OPTIONS_OPTIONS
+#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPTIONS_OPTIONS \
+   XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
+   XOS_APP_CONSOLE_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
+   XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_OPTIONS \
 
-///////////////////////////////////////////////////////////////////////
-#define XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_ENCODING_OPTIONS_CHARS \
-   XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_CHARS_EXTEND \
-   XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_ENCODING_OPTIONS_CHARS
-
-#define XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_ENCODING_OPTIONS_OPTIONS \
-   XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPTIONS_OPTIONS_EXTEND \
-   XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_ENCODING_OPTIONS_OPTIONS
-
-///////////////////////////////////////////////////////////////////////
-#define XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_ARGS 0
-#define XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_ARGV 0,
+#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_ARGS 0
+#define XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_ARGV 0,
 
 namespace xos {
 namespace app {
 namespace console {
 namespace protocol {
 namespace http {
-namespace base {
+namespace server {
 
 /// class main_optt
 template 
-<class TExtends = xos::app::console::protocol::xttp::base::maint
- <xos::app::console::protocol::xttp::base::main_optt<> >, 
+<class TExtends = xos::app::console::protocol::xttp::server::maint
+ <xos::app::console::protocol::xttp::server::main_optt
+ <xos::app::console::protocol::http::base::maint
+ <xos::app::console::protocol::http::base::main_optt<> > > >, 
  class TImplements = typename TExtends::implements>
 
 class exported main_optt: virtual public TImplements, public TExtends {
@@ -90,8 +84,6 @@ protected:
     typedef typename extends::in_reader_t in_reader_t;
     typedef typename extends::out_writer_t out_writer_t;
     typedef typename extends::err_writer_t err_writer_t;
-
-    typedef typename extends::content_t content_t;
 
     /// ...run
     int (derives::*run_)(int argc, char_t** argv, char_t** env);
@@ -126,9 +118,9 @@ protected:
         return chars;
     }
     virtual const char_t* options(const struct option*& longopts) {
-        static const char_t* chars = XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_ENCODING_OPTIONS_CHARS;
+        static const char_t* chars = XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPTIONS_CHARS;
         static struct option optstruct[]= {
-            XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_ENCODING_OPTIONS_OPTIONS
+            XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPTIONS_OPTIONS
             {0, 0, 0, 0}};
         longopts = optstruct;
         return chars;
@@ -136,9 +128,9 @@ protected:
 
     /// ...argument...
     virtual const char_t* arguments(const char_t**& argv) {
-        static const char_t* _args = XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_ARGS;
+        static const char_t* _args = XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_ARGS;
         static const char_t* _argv[] = {
-            XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_ARGV
+            XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_ARGV
             0};
         argv = _argv;
         return _args;
@@ -148,11 +140,11 @@ protected:
 }; /// class main_optt
 typedef main_optt<> main_opt;
 
-} /// namespace base
+} /// namespace server
 } /// namespace http
 } /// namespace protocol
 } /// namespace console
 } /// namespace app
 } /// namespace xos
 
-#endif /// ndef XOS_APP_CONSOLE_PROTOCOL_HTTP_BASE_MAIN_OPT_HPP
+#endif /// ndef XOS_APP_CONSOLE_PROTOCOL_HTTP_SERVER_MAIN_OPT_HPP
