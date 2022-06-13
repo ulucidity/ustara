@@ -16,7 +16,7 @@
 ///   File: main_opt.hpp
 ///
 /// Author: $author$
-///   Date: 11/10/2021
+///   Date: 11/10/2021, 6/11/2022
 ///////////////////////////////////////////////////////////////////////
 #ifndef XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPT_HPP
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPT_HPP
@@ -29,18 +29,39 @@
 
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
 
+///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_CHARS \
     XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_CHARS_EXTEND \
     XOS_APP_CONSOLE_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_CHARS_EXTEND \
-    XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_OPTIONS_CHARS_EXTEND \
+    XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_ENCODING_OPTIONS_CHARS_EXTEND \
     XOS_APP_CONSOLE_NETWORK_SOCKETS_SERVER_MAIN_OPTIONS_CHARS \
 
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_OPTIONS \
     XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
     XOS_APP_CONSOLE_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
-    XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_OPTIONS_OPTIONS_EXTEND \
+    XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_ENCODING_OPTIONS_OPTIONS_EXTEND \
     XOS_APP_CONSOLE_NETWORK_SOCKETS_SERVER_MAIN_OPTIONS_OPTIONS \
 
+#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_ENCODING_OPTIONS_CHARS \
+    XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_CHARS \
+    
+#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_ENCODING_OPTIONS_OPTIONS \
+    XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_OPTIONS \
+    
+///////////////////////////////////////////////////////////////////////
+#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_ACCEPT_OPTIONS_CHARS \
+    XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_CHARS_EXTEND \
+    XOS_APP_CONSOLE_PROTOCOL_XTTP_SERVER_MAIN_SPOND_OPTIONS_CHARS_EXTEND \
+    XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_CODING_OPTIONS_CHARS_EXTEND \
+    XOS_APP_CONSOLE_NETWORK_SOCKETS_SERVER_MAIN_LOGGING_OPTIONS_CHARS \
+
+#define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_ACCEPT_OPTIONS_OPTIONS \
+    XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_OPTIONS_OPTIONS_EXTEND \
+    XOS_APP_CONSOLE_PROTOCOL_XTTP_SERVER_MAIN_SPOND_OPTIONS_OPTIONS_EXTEND \
+    XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_CODING_OPTIONS_OPTIONS_EXTEND \
+    XOS_APP_CONSOLE_NETWORK_SOCKETS_SERVER_MAIN_LOGGING_OPTIONS_OPTIONS \
+
+///////////////////////////////////////////////////////////////////////
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_ARGS 0
 #define XOS_APP_CONSOLE_NETWORK_SOCKETS_PROTOCOL_XTTP_SERVER_MAIN_ARGV 0,
 
@@ -55,9 +76,13 @@ namespace server {
 
 /// class main_optt
 template 
-<class TExtends = console::protocol::xttp::server::maint<console::protocol::xttp::server::main_optt
- <console::network::sockets::protocol::xttp::base::maint<console::network::sockets::protocol::xttp::base::main_optt
- <console::protocol::xttp::base::maint<console::protocol::xttp::base::main_optt<network::sockets::server::maint<> > > > > > >, 
+<class TExtends = xos::app::console::protocol::xttp::server::maint
+ <xos::app::console::protocol::xttp::server::main_optt
+ <xos::app::console::network::sockets::protocol::xttp::base::maint
+ <xos::app::console::network::sockets::protocol::xttp::base::main_optt
+ <xos::app::console::protocol::xttp::base::maint
+ <xos::app::console::protocol::xttp::base::main_optt
+ <xos::app::console::network::sockets::server::maint<> > > > > > >, 
  class TImplements = typename TExtends::implements>
 
 class exported main_optt: virtual public TImplements, public TExtends {

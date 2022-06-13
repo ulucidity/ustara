@@ -73,6 +73,7 @@ protected:
     typedef typename extends::err_writer_t err_writer_t;
 
     typedef typename extends::headers_t headers_t;
+    typedef typename extends::content_encoding_header_t content_encoding_header_t;
     typedef typename extends::content_type_header_t content_type_header_t;
     typedef typename extends::content_length_header_t content_length_header_t;
     typedef typename extends::content_t content_t;
@@ -111,6 +112,19 @@ protected:
         int err = 0;
         content_length_header.set_length(response_content.length());
         response_headers.is_setl(&content_type_header, &content_length_header, null);
+        err = all_set_response_content(response_headers, response_content, argc, argv, env);
+        return err;
+    }
+
+    /// ...set_content_encoding
+    virtual int after_set_content_encoding(const char_t* content_encoding, int argc, char_t** argv, char** env) {
+        content_encoding_header_t& content_encoding_header = this->content_encoding_header();
+        content_type_header_t& content_type_header = this->content_type_header();
+        content_length_header_t& content_length_header = this->content_length_header();
+        headers_t& response_headers = this->response_headers();
+        content_t& response_content = this->content();
+        int err = 0;
+        response_headers.is_setl(&content_encoding_header, &content_type_header, &content_length_header, null);
         err = all_set_response_content(response_headers, response_content, argc, argv, env);
         return err;
     }
