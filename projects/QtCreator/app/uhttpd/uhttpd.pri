@@ -55,38 +55,51 @@ XOS_CONSOLE_MAIN_MAIN \
 # uhttpd HEADERS
 #
 uhttpd_HEADERS += \
+$${UNADIR_SRC}/xos/console/main.hpp \
+$${UNADIR_SRC}/xos/console/getopt/main_opt.hpp \
+$${UNADIR_SRC}/xos/console/getopt/main.hpp \
+\
 $${UNADIR_SRC}/xos/app/console/main_opt.hpp \
 $${UNADIR_SRC}/xos/app/console/main.hpp \
 \
 $${UNADIR_SRC}/xos/app/console/version/main_opt.hpp \
 $${UNADIR_SRC}/xos/app/console/version/main.hpp \
-\
 $${USTARA_SRC}/xos/app/console/stara/version/main_opt.hpp \
 $${USTARA_SRC}/xos/app/console/stara/version/main.hpp \
 \
 $${USTARA_SRC}/xos/app/console/protocol/xttp/base/main_opt.hpp \
 $${USTARA_SRC}/xos/app/console/protocol/xttp/base/main.hpp \
-\
 $${USTARA_SRC}/xos/app/console/protocol/xttp/client/main_opt.hpp \
 $${USTARA_SRC}/xos/app/console/protocol/xttp/client/main.hpp \
-\
 $${USTARA_SRC}/xos/app/console/protocol/xttp/server/main_opt.hpp \
 $${USTARA_SRC}/xos/app/console/protocol/xttp/server/main.hpp \
 \
 $${USTARA_SRC}/xos/app/console/protocol/http/base/main_opt.hpp \
 $${USTARA_SRC}/xos/app/console/protocol/http/base/main.hpp \
-\
 $${USTARA_SRC}/xos/app/console/protocol/http/client/main_opt.hpp \
 $${USTARA_SRC}/xos/app/console/protocol/http/client/main.hpp \
-\
 $${USTARA_SRC}/xos/app/console/protocol/http/server/main_opt.hpp \
 $${USTARA_SRC}/xos/app/console/protocol/http/server/main.hpp \
+\
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/xttp/base/main_opt.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/xttp/base/main.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/xttp/client/main_opt.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/xttp/client/main.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/xttp/server/main_opt.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/xttp/server/main.hpp \
+\
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/http/base/main_opt.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/http/base/main.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/http/client/main_opt.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/http/client/main.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/http/server/main_opt.hpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/http/server/main.hpp \
 
 # uhttpd SOURCES
 #
 uhttpd_SOURCES += \
-$${USTARA_SRC}/xos/app/console/protocol/http/base/main_opt.cpp \
-$${USTARA_SRC}/xos/app/console/protocol/http/base/main.cpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/http/server/main_opt.cpp \
+$${USTARA_SRC}/xos/app/console/network/sockets/protocol/http/server/main.cpp \
 
 ########################################################################
 # uhttpd FRAMEWORKS
