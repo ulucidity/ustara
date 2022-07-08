@@ -16,7 +16,7 @@
 ///   File: which.hpp
 ///
 /// Author: $author$
-///   Date: 5/6/2022
+///   Date: 5/6/2022, 6/14/2022
 ///////////////////////////////////////////////////////////////////////
 #ifndef XOS_PROTOCOL_HTTP_CONTENT_ENCODING_WHICH_HPP
 #define XOS_PROTOCOL_HTTP_CONTENT_ENCODING_WHICH_HPP
@@ -25,9 +25,11 @@
 
 #define XOS_PROTOCOL_HTTP_CONTENT_ENCODING_NAME_UNKNOWN "unknown"
 #define XOS_PROTOCOL_HTTP_CONTENT_ENCODING_NAME_NONE "none"
+#define XOS_PROTOCOL_HTTP_CONTENT_ENCODING_NAME_XTXT "xtxt"
 
 #define XOS_PROTOCOL_HTTP_CONTENT_ENCODING_WHICH_NAMES \
-    XOS_PROTOCOL_HTTP_CONTENT_ENCODING_NAME_NONE,
+    XOS_PROTOCOL_HTTP_CONTENT_ENCODING_NAME_NONE, \
+    XOS_PROTOCOL_HTTP_CONTENT_ENCODING_NAME_XTXT,
 
 namespace xos {
 namespace protocol {
@@ -41,6 +43,7 @@ enum {
     unknown = -1,
 
     none,
+    xtxt,
 
     next,
     first = (unknown + 1),

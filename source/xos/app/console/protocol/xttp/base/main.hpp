@@ -16,7 +16,7 @@
 ///   File: main.hpp
 ///
 /// Author: $author$
-///   Date: 5/6/2022
+///   Date: 5/6/2022, 6/14/2022
 ///////////////////////////////////////////////////////////////////////
 #ifndef XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_HPP
 #define XOS_APP_CONSOLE_PROTOCOL_XTTP_BASE_MAIN_HPP
@@ -34,6 +34,10 @@
 #include "xos/protocol/http/content/type/name.hpp"
 #include "xos/protocol/http/content/type/nameof.hpp"
 #include "xos/protocol/http/content/type/which.hpp"
+
+#include "xos/protocol/http/text/plain/content/type.hpp"
+#include "xos/protocol/http/text/json/content/type.hpp"
+#include "xos/protocol/http/text/content.hpp"
 
 #include "xos/protocol/http/message/body/content.hpp"
 #include "xos/protocol/http/message/header/content/encoding.hpp"
@@ -106,17 +110,38 @@ protected:
     typedef xos::protocol::http::message::header::fields headers_t;
     typedef xos::protocol::http::message::header::content::length content_length_header_t;
     typedef xos::protocol::http::message::header::content::type content_type_header_t;
-    enum { content_type_subtype_json = xos::protocol::http::content::media::subtype::json };
+
     typedef xos::protocol::http::content::media::subtype::which_t content_type_subtype_which_t;
     typedef xos::protocol::http::content::media::subtype::name content_type_subtype_t;
-    enum { content_type_type_text = xos::protocol::http::content::media::type::text };
+    enum { 
+        content_type_subtype_plain = xos::protocol::http::content::media::subtype::plain,
+        content_type_subtype_html = xos::protocol::http::content::media::subtype::html,
+        content_type_subtype_xml = xos::protocol::http::content::media::subtype::xml,
+        content_type_subtype_css = xos::protocol::http::content::media::subtype::css,
+        content_type_subtype_javascript = xos::protocol::http::content::media::subtype::javascript,
+        content_type_subtype_json = xos::protocol::http::content::media::subtype::json,
+        content_type_subtype_form_data = xos::protocol::http::content::media::subtype::form_data,
+        content_type_subtype_urlencoded_form_data = xos::protocol::http::content::media::subtype::urlencoded_form_data,
+    };
+
     typedef xos::protocol::http::content::media::type::which_t content_type_type_which_t;
     typedef xos::protocol::http::content::media::type::name content_type_type_t;
+    enum { 
+        content_type_type_text = xos::protocol::http::content::media::type::text,
+        content_type_type_application = xos::protocol::http::content::media::type::application, 
+        content_type_type_multipart = xos::protocol::http::content::media::type::multipart, 
+    };
+
     typedef xos::protocol::http::content::type::which_t content_type_which_t;
     typedef xos::protocol::http::content::type::name content_type_t;
+
     typedef xos::protocol::http::message::header::content::encoding content_encoding_header_t;
     typedef xos::protocol::http::content::encoding::which_t content_encoding_which_t;
     typedef xos::protocol::http::content::encoding::name content_encoding_t;
+
+    typedef xos::protocol::http::text::plain::content::type text_content_type_t;
+    typedef xos::protocol::http::text::json::content::type json_content_type_t;
+    typedef xos::protocol::http::text::content text_content_t;
     typedef xos::protocol::http::message::body::content content_t;
     typedef xos::protocol::http::protocol::identifier protocol_t;
 

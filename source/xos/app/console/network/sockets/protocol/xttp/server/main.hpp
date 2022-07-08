@@ -178,6 +178,18 @@ protected:
         int err = 0;
         switch (request.line().method().which()) {
 
+        case xos::protocol::http::request::method::GET:
+            LOGGER_IS_LOGGED_INFO("all_process_response_to_GET(writer, response, request, reader, argc, argv, env)...");
+            err = all_process_response_to_GET(writer, response, request, reader, argc, argv, env);
+            LOGGER_IS_LOGGED_INFO("..." << err << " = all_process_response_to_GET(writer, response, request, reader, argc, argv, env)");
+            break;
+        
+        case xos::protocol::http::request::method::POST:
+            LOGGER_IS_LOGGED_INFO("all_process_response_to_POST(writer, response, request, reader, argc, argv, env)...");
+            err = all_process_response_to_POST(writer, response, request, reader, argc, argv, env);
+            LOGGER_IS_LOGGED_INFO("..." << err << " = all_process_response_to_POST(writer, response, request, reader, argc, argv, env)");
+            break;
+        
         case xos::protocol::http::request::method::restart:
             LOGGER_IS_LOGGED_INFO("all_process_response_to_restart(writer, response, request, reader, argc, argv, env)...");
             err = all_process_response_to_restart(writer, response, request, reader, argc, argv, env);
@@ -213,6 +225,62 @@ protected:
             int err2 = 0;
             err = process_response_to(writer, response, request, reader, argc, argv, env);
             if ((err2 = after_process_response_to(writer, response, request, reader, argc, argv, env))) {
+                if (!(err)) err = err2;
+            }
+        }
+        return err;
+    }
+
+    /// ...process_response_to_GET...
+    virtual int process_response_to_GET(writer_t& writer, response_t& response, request_t& request, reader_t& reader, int argc, char_t** argv, char** env) {
+        int err = 0;
+        LOGGER_IS_LOGGED_INFO("process_response_to_GET(writer, response, request, reader, argc, argv, env)...");
+        err = this->all_process_response_to_any(writer, response, request, reader, argc, argv, env);
+        LOGGER_IS_LOGGED_INFO("...process_response_to_GET(writer, response, request, reader, argc, argv, env)");
+        return err;
+    }
+    virtual int before_process_response_to_GET(writer_t& writer, response_t& response, request_t& request, reader_t& reader, int argc, char_t** argv, char** env) {
+        int err = 0;
+        return err;
+    }
+    virtual int after_process_response_to_GET(writer_t& writer, response_t& response, request_t& request, reader_t& reader, int argc, char_t** argv, char** env) {
+        int err = 0;
+        return err;
+    }
+    virtual int all_process_response_to_GET(writer_t& writer, response_t& response, request_t& request, reader_t& reader, int argc, char_t** argv, char** env) {
+        int err = 0;
+        if (!(err = before_process_response_to_GET(writer, response, request, reader, argc, argv, env))) {
+            int err2 = 0;
+            err = process_response_to_GET(writer, response, request, reader, argc, argv, env);
+            if ((err2 = after_process_response_to_GET(writer, response, request, reader, argc, argv, env))) {
+                if (!(err)) err = err2;
+            }
+        }
+        return err;
+    }
+
+    /// ...process_response_to_POST...
+    virtual int process_response_to_POST(writer_t& writer, response_t& response, request_t& request, reader_t& reader, int argc, char_t** argv, char** env) {
+        int err = 0;
+        LOGGER_IS_LOGGED_INFO("process_response_to_POST(writer, response, request, reader, argc, argv, env)...");
+        err = this->all_process_response_to_any(writer, response, request, reader, argc, argv, env);
+        LOGGER_IS_LOGGED_INFO("...process_response_to_POST(writer, response, request, reader, argc, argv, env)");
+        return err;
+    }
+    virtual int before_process_response_to_POST(writer_t& writer, response_t& response, request_t& request, reader_t& reader, int argc, char_t** argv, char** env) {
+        int err = 0;
+        return err;
+    }
+    virtual int after_process_response_to_POST(writer_t& writer, response_t& response, request_t& request, reader_t& reader, int argc, char_t** argv, char** env) {
+        int err = 0;
+        return err;
+    }
+    virtual int all_process_response_to_POST(writer_t& writer, response_t& response, request_t& request, reader_t& reader, int argc, char_t** argv, char** env) {
+        int err = 0;
+        if (!(err = before_process_response_to_POST(writer, response, request, reader, argc, argv, env))) {
+            int err2 = 0;
+            err = process_response_to_POST(writer, response, request, reader, argc, argv, env);
+            if ((err2 = after_process_response_to_POST(writer, response, request, reader, argc, argv, env))) {
                 if (!(err)) err = err2;
             }
         }

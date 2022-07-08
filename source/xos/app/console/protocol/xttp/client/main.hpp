@@ -82,7 +82,11 @@ protected:
     typedef typename extends::content_encoding_header_t content_encoding_header_t;
     typedef typename extends::content_type_header_t content_type_header_t;
     typedef typename extends::content_length_header_t content_length_header_t;
+
     typedef typename extends::content_t content_t;
+    typedef typename extends::text_content_type_t text_content_type_t;
+    typedef typename extends::json_content_type_t json_content_type_t;
+    typedef typename extends::text_content_t text_content_t;
 
     typedef xos::protocol::http::request::method::name request_method_t;
     typedef xos::protocol::http::request::resource::identifier request_resource_t;
